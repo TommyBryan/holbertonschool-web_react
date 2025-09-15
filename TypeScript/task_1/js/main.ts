@@ -2,12 +2,17 @@
 
 // Teacher interface
 interface Teacher {
-  readonly firstName: string; // can only be set at initialization
-  readonly lastName: string;  // can only be set at initialization
+  readonly firstName: string;
+  readonly lastName: string;
   fullTimeEmployee: boolean;
-  yearsOfExperience?: number; // optional
+  yearsOfExperience?: number;
   location: string;
-  [key: string]: any; // allows adding any extra property
+  [key: string]: any;
+}
+
+// Directors interface extending Teacher
+interface Directors extends Teacher {
+  numberOfReports: number;
 }
 
 // Example usage
@@ -16,7 +21,17 @@ const teacher3: Teacher = {
   lastName: "Doe",
   fullTimeEmployee: false,
   location: "London",
-  contract: false, // additional property allowed by [key: string]: any
+  contract: false,
 };
 
-console.log(teacher3);
+console.log("Teacher:", teacher3);
+
+const director1: Directors = {
+  firstName: "John",
+  lastName: "Doe",
+  location: "London",
+  fullTimeEmployee: true,
+  numberOfReports: 17,
+};
+
+console.log("Director:", director1);
