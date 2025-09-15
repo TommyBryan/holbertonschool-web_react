@@ -1,6 +1,8 @@
 // task_1/js/main.ts
 
-// Teacher interface
+// ----------------------
+// Task 1: Teacher Interface
+// ----------------------
 interface Teacher {
   readonly firstName: string;
   readonly lastName: string;
@@ -10,12 +12,7 @@ interface Teacher {
   [key: string]: any;
 }
 
-// Directors interface extending Teacher
-interface Directors extends Teacher {
-  numberOfReports: number;
-}
-
-// Example usage
+// Example Teacher
 const teacher3: Teacher = {
   firstName: "John",
   lastName: "Doe",
@@ -26,6 +23,13 @@ const teacher3: Teacher = {
 
 console.log("Teacher:", teacher3);
 
+// ----------------------
+// Task 2: Directors extends Teacher
+// ----------------------
+interface Directors extends Teacher {
+  numberOfReports: number;
+}
+
 const director1: Directors = {
   firstName: "John",
   lastName: "Doe",
@@ -35,3 +39,55 @@ const director1: Directors = {
 };
 
 console.log("Director:", director1);
+
+// ----------------------
+// Task 3: printTeacher function
+// ----------------------
+interface printTeacherFunction {
+  (firstName: string, lastName: string): string;
+}
+
+const printTeacher: printTeacherFunction = (
+  firstName: string,
+  lastName: string
+): string => {
+  return `${firstName.charAt(0)}. ${lastName}`;
+};
+
+console.log("printTeacher:", printTeacher("John", "Doe"));
+console.log("printTeacher:", printTeacher("Ezra", "Hart"));
+
+// ----------------------
+// Task 4: StudentClass
+// ----------------------
+interface StudentClassConstructor {
+  new (firstName: string, lastName: string): StudentClassInterface;
+}
+
+interface StudentClassInterface {
+  workOnHomework(): string;
+  displayName(): string;
+}
+
+class StudentClass implements StudentClassInterface {
+  private firstName: string;
+  private lastName: string;
+
+  constructor(firstName: string, lastName: string) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  workOnHomework(): string {
+    return "Currently working";
+  }
+
+  displayName(): string {
+    return this.firstName;
+  }
+}
+
+// Example Student
+const student = new StudentClass("Ezra", "Hart");
+console.log("Student displayName:", student.displayName());
+console.log("Student workOnHomework:", student.workOnHomework());
